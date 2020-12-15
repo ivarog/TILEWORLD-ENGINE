@@ -1,0 +1,11 @@
+﻿  Button.cpp
+  Entity.cpp
+  Game.cpp
+  GameState.cpp
+  main.cpp
+  MainMenuState.cpp
+  State.cpp
+  Generating code
+  All 622 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  SFML_RPG.vcxproj -> C:\Users\Ivan\Documents\C++\SFML_RPG\Release\SFML_RPG.exe

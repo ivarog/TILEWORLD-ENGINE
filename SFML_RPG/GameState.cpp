@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "GameState.h"
 
 
@@ -72,6 +73,7 @@ void GameState::initTextures()
 void GameState::initPauseMenu()
 {
 	this->pmenu = new PauseMenu(*this->window, this->font);
+	this->pmenu->addButton("QUIT", 500.f, "Quit");
 }
 
 void GameState::initPlayers()
@@ -101,7 +103,7 @@ GameState::~GameState()
 
 void GameState::updateInput(const float& dt)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getKeyTime())
 	{
 		if (!this->paused)
 			this->pauseState();
@@ -123,9 +125,16 @@ void GameState::updatePlayerInput(const float & dt)
 		this->player->move(0.f, 1.f, dt);
 }
 
+void GameState::updatePauseMenuButtons()
+{
+	if (this->pmenu->isButtonPressed("QUIT"))
+		this->endState();
+}
+
 void GameState::update(const float& dt)
 {
 	this->updateMousePositions();
+	this->updateKeytime(dt);
 	this->updateInput(dt);
 
 	if (!this->paused) //Unpaused update
@@ -136,7 +145,8 @@ void GameState::update(const float& dt)
 	}
 	else //Paused update
 	{
-		this->pmenu->update();
+		this->pmenu->update(this->mousePosView);
+		this->updatePauseMenuButtons();
 	}
 }
 
@@ -145,6 +155,8 @@ void GameState::render(sf::RenderTarget* target)
 	if (!target)
 		target = this->window;
 	
+	this->map.render(*target);
+
 	this->player->render(*target);
 
 	if (this->paused)

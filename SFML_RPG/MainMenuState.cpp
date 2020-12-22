@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "MainMenuState.h"
 
 //Initializer functions
@@ -50,10 +51,10 @@ void MainMenuState::initKeybinds()
 
 void MainMenuState::initButtons()
 {
-	this->buttons["GAME_STATE"] = new Button(515, 200, 250, 50, &this->font, "New Game", 12, sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 200), sf::Color(70, 70, 70,200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
-	this->buttons["SETTINGS"] = new Button(515, 300, 250, 50, &this->font, "Settings", 12, sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 200), sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
-	this->buttons["EDITOR_STATE"] = new Button(515, 400, 250, 50, &this->font, "Editor", 12, sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 200), sf::Color(20, 20, 20, 200));
-	this->buttons["EXIT_STATE"] = new Button(515, 550 , 250, 50, &this->font, "Quit", 12, sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 200), sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+	this->buttons["GAME_STATE"] = new GUI::Button(515.f, 200.f, 250.f, 50.f, &this->font, "New Game", 12, sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 200), sf::Color(70, 70, 70,200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+	this->buttons["SETTINGS_STATE"] = new GUI::Button(515.f, 300.f, 250.f, 50.f, &this->font, "Settings", 12, sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 200), sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+	this->buttons["EDITOR_STATE"] = new GUI::Button(515.f, 400.f, 250.f, 50.f, &this->font, "Editor", 12, sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 200), sf::Color(20, 20, 20, 200));
+	this->buttons["EXIT_STATE"] = new GUI::Button(515.f, 550.f, 250.f, 50.f, &this->font, "Quit", 12, sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 200), sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 }
 
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states) : State(window, supportedKeys, states)
@@ -91,6 +92,11 @@ void MainMenuState::updateButtons()
 	if (this->buttons["GAME_STATE"]->isPressed())
 	{
 		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
+	}
+
+	if (this->buttons["SETTINGS_STATE"]->isPressed())
+	{
+		this->states->push(new SettingsState(this->window, this->supportedKeys, this->states));
 	}
 
 	if (this->buttons["EDITOR_STATE"]->isPressed())

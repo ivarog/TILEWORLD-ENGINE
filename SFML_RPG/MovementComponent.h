@@ -1,21 +1,5 @@
 #pragma once
 
-#include <vector>
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <stack>
-#include <map>
-#include <algorithm>
-
-#include "SFML/System.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/Graphics.hpp"
-#include "SFML/Audio.hpp"
-#include "SFML/Network.hpp"
 
 enum MovementState { IdleDown, IdleLeft, IdleRight, IdleUp, Idle, Moving, WalkingLeft, WalkingRight, WalkingUp, WalkingDown };
 

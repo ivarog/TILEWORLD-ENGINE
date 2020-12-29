@@ -27,7 +27,7 @@ private:
 	void initText();
 
 public:
-    SettingsState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
+    SettingsState(StateData* stateData);
     virtual ~SettingsState();
 
 	void updateInput(const float& dt);

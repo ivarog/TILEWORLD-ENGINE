@@ -57,14 +57,13 @@ void MainMenuState::initButtons()
 	this->buttons["EXIT_STATE"] = new GUI::Button(515.f, 550.f, 250.f, 50.f, &this->font, "Quit", 12, sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 200), sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 }
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states) : State(window, supportedKeys, states)
+MainMenuState::MainMenuState(StateData* stateData) : State(stateData)
 {
 	this->initVariables();
 	this->initBackground();
 	this->initFonts();
 	this->initKeybinds();
 	this->initButtons();
-
 }
 
 
@@ -91,17 +90,17 @@ void MainMenuState::updateButtons()
 
 	if (this->buttons["GAME_STATE"]->isPressed())
 	{
-		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
+		this->states->push(new GameState(this->stateData));
 	}
 
 	if (this->buttons["SETTINGS_STATE"]->isPressed())
 	{
-		this->states->push(new SettingsState(this->window, this->supportedKeys, this->states));
+		this->states->push(new SettingsState(this->stateData));
 	}
 
 	if (this->buttons["EDITOR_STATE"]->isPressed())
 	{
-		this->states->push(new EditorState(this->window, this->supportedKeys, this->states));
+		this->states->push(new EditorState(this->stateData));
 	}
 
 	if (this->buttons["EXIT_STATE"]->isPressed())

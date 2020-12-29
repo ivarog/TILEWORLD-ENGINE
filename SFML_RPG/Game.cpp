@@ -9,29 +9,47 @@
 
 void Game::initWindow()
 {
-	if(this->gfxSettings.fullScreen)
-		this->window = new sf::RenderWindow(this->gfxSettings.resolution, this->gfxSettings.title, sf::Style::Fullscreen, this->gfxSettings.contextSettings);
+	if(this->gSettings.fullScreen)
+		this->window = new sf::RenderWindow(
+			this->gSettings.resolution,
+			this->gSettings.title,
+			sf::Style::Fullscreen,
+			this->gSettings.contextSettings);
 	else
-		this->window = new sf::RenderWindow(this->gfxSettings.resolution, this->gfxSettings.title, sf::Style::Titlebar | sf::Style::Close, this->gfxSettings.contextSettings);
+	this->window = new sf::RenderWindow(
+	this->gSettings.resolution,
+	this->gSettings.title,
+	sf::Style::Titlebar | sf::Style::Close,
+	this->gSettings.contextSettings);
 
-	this->window->setFramerateLimit(this->gfxSettings.framerateLimit);
-	this->window->setVerticalSyncEnabled(this->gfxSettings.verticalSync);
+	this->window->setFramerateLimit(this->gSettings.framerateLimit);
+	this->window->setVerticalSyncEnabled(this->gSettings.verticalSync);
 }
 
 void Game::initVariables()
 {
 	this->window = NULL;
 	this->dt = 0.f;
+	this->gridSize = 100.f;
 }
 
 void Game::initGraphicsSettings()
 {
-	this->gfxSettings.loadFromFile("Config/graphics.ini");
+	this->gSettings.loadFromFile("Config/graphics.ini");
+}
+
+void Game::initSateData()
+{
+	this->stateData.window = this->window;
+	this->stateData.gfxSettings = &this->gSettings;
+	this->stateData.supportedKeys = &this->supportedKeys;
+	this->stateData.states = &this->states;
+	this->stateData.gridSize = this->gridSize;
 }
 
 void Game::initStates()
 {
-	this->states.push(new MainMenuState(this->window, &this->supportedKeys, &this->states));
+	this->states.push(new MainMenuState(&this->stateData));
 }
 
 void Game::initKeys()
@@ -62,6 +80,7 @@ Game::Game()
 	this->initGraphicsSettings();
 	this->initWindow();
 	this->initKeys();
+	this->initSateData();
 	this->initStates();
 }
 
@@ -104,14 +123,13 @@ void Game::update()
 	if (!this->states.empty())
 	{
 		this->states.top()->update(this->dt);
-
+		
 		if (this->states.top()->getQuit())
 		{ 
 			this->states.top()->endState();
 			delete this->states.top();
 			this->states.pop();
 		}
-
 	}
 	//Application end
 	else

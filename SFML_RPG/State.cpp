@@ -2,15 +2,17 @@
 #include "State.h"
 
 
-State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
+State::State(StateData* stateData)
 {
-	this->window = window;
-	this->supportedKeys = supportedKeys;
+	this->stateData = stateData;
+	this->window = stateData->window;
+	this->supportedKeys = stateData->supportedKeys;
 	this->quit = false;
 	this->paused = false;
-	this->states = states;
+	this->states = stateData->states;
 	this->keyTime = 0.f;
 	this->keyTimeMax = 10.f;
+	this->gridSize = stateData->gridSize;
 }
 
 
@@ -54,6 +56,10 @@ void State::updateMousePositions()
 	this->mousePosScreen = sf::Mouse::getPosition();
 	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
 	this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+	this->mousePosGrid = sf::Vector2u(
+		static_cast<unsigned>(this->mousePosView.x) / static_cast<unsigned>(this->gridSize),
+		static_cast<unsigned>(this->mousePosView.y) / static_cast<unsigned>(this->gridSize)
+	);
 }
 
 void State::updateKeytime(const float& dt)

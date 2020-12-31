@@ -14,8 +14,10 @@ private:
 	PauseMenu* pmenu;
 
 	std::map<std::string, GUI::Button*> buttons;
+
 	TileMap* tileMap;
 
+	sf::IntRect textureRect;
 	sf::RectangleShape selectorRect;
 
 	//Functions

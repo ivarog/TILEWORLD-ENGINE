@@ -17,10 +17,11 @@ void Game::initWindow()
 			this->gSettings.contextSettings);
 	else
 	this->window = new sf::RenderWindow(
-	this->gSettings.resolution,
-	this->gSettings.title,
-	sf::Style::Titlebar | sf::Style::Close,
-	this->gSettings.contextSettings);
+		this->gSettings.resolution,
+		this->gSettings.title,
+		sf::Style::Titlebar | sf::Style::Close,
+		this->gSettings.contextSettings
+	);
 
 	this->window->setFramerateLimit(this->gSettings.framerateLimit);
 	this->window->setVerticalSyncEnabled(this->gSettings.verticalSync);
@@ -30,7 +31,9 @@ void Game::initVariables()
 {
 	this->window = NULL;
 	this->dt = 0.f;
-	this->gridSize = 100.f;
+
+	// Original size tile = 16
+	this->gridSize = 80.f;
 }
 
 void Game::initGraphicsSettings()

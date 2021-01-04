@@ -61,6 +61,7 @@ namespace GUI
 		std::vector<GUI::Button*> list;
 		bool showList;
 
+
 	public:
 		DropdownList(float x, float y, float width, float height, sf::Font& font, std::string list[], unsigned nrOfElements, unsigned defaultIndex = 0);
 		~DropdownList();
@@ -72,6 +73,38 @@ namespace GUI
 		bool getKeytime();
 		void updateKeytime(const float& dt);
 		void update(const sf::Vector2f& mousePos, const float& dt);
+		void render(sf::RenderTarget& target);
+	};
+
+	class TextureSelector
+	{
+	private:
+		float keytime;
+		float keytimeMax;
+		float gridSize;
+		float textureScale;
+		bool active;
+		bool hidden;
+		GUI::Button* hideBtn;
+
+		sf::RectangleShape bounds;
+		sf::Sprite sheet;
+		sf::RectangleShape selector;
+		sf::Vector2u mousePosGrid;
+		sf::IntRect textureRect;
+
+
+	public:
+		TextureSelector(float x, float y, float width, float height, float gridSize, const sf::Texture* textureSheet, const float textureScale, sf::Font& font, std::string text);
+		~TextureSelector();
+
+		//Accesors
+		const bool& getActive() const;
+		const sf::IntRect& getTextureRect() const;
+
+		bool getKeytime();
+		void updateKeytime(const float& dt);
+		void update(const sf::Vector2i& mousePosWindow, const float& dt);
 		void render(sf::RenderTarget& target);
 	};
 }

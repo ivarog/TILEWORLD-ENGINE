@@ -32,39 +32,39 @@ void GameState::initKeybinds()
 
 void GameState::initTextures()
 {
-	if (!this->textures["PLAYER_IDLE_LEFT"].loadFromFile("Resources/Tiny Adventure Pack Plus/Character/Char_one/Idle/Char_idle_left.png"))
+	if (!this->textures["PLAYER_IDLE_LEFT"].loadFromFile("Resources/Tiny_Adventure_Pack_Plus/Character/Char_one/Idle/Char_idle_left.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
-	if (!this->textures["PLAYER_IDLE_RIGHT"].loadFromFile("Resources/Tiny Adventure Pack Plus/Character/Char_one/Idle/Char_idle_right.png"))
+	if (!this->textures["PLAYER_IDLE_RIGHT"].loadFromFile("Resources/Tiny_Adventure_Pack_Plus/Character/Char_one/Idle/Char_idle_right.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
-	if (!this->textures["PLAYER_IDLE_UP"].loadFromFile("Resources/Tiny Adventure Pack Plus/Character/Char_one/Idle/Char_idle_up.png"))
+	if (!this->textures["PLAYER_IDLE_UP"].loadFromFile("Resources/Tiny_Adventure_Pack_Plus/Character/Char_one/Idle/Char_idle_up.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
-	if (!this->textures["PLAYER_IDLE_DOWN"].loadFromFile("Resources/Tiny Adventure Pack Plus/Character/Char_one/Idle/Char_idle_down.png"))
+	if (!this->textures["PLAYER_IDLE_DOWN"].loadFromFile("Resources/Tiny_Adventure_Pack_Plus/Character/Char_one/Idle/Char_idle_down.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
-	if(!this->textures["PLAYER_WALK_LEFT"].loadFromFile("Resources/Tiny Adventure Pack Plus/Character/Char_one/Walk/Char_walk_left.png"))
+	if(!this->textures["PLAYER_WALK_LEFT"].loadFromFile("Resources/Tiny_Adventure_Pack_Plus/Character/Char_one/Walk/Char_walk_left.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
-	if (!this->textures["PLAYER_WALK_RIGHT"].loadFromFile("Resources/Tiny Adventure Pack Plus/Character/Char_one/Walk/Char_walk_right.png"))
+	if (!this->textures["PLAYER_WALK_RIGHT"].loadFromFile("Resources/Tiny_Adventure_Pack_Plus/Character/Char_one/Walk/Char_walk_right.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
-	if (!this->textures["PLAYER_WALK_UP"].loadFromFile("Resources/Tiny Adventure Pack Plus/Character/Char_one/Walk/Char_walk_up.png"))
+	if (!this->textures["PLAYER_WALK_UP"].loadFromFile("Resources/Tiny_Adventure_Pack_Plus/Character/Char_one/Walk/Char_walk_up.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
-	if (!this->textures["PLAYER_WALK_DOWN"].loadFromFile("Resources/Tiny Adventure Pack Plus/Character/Char_one/Walk/Char_walk_down.png"))
+	if (!this->textures["PLAYER_WALK_DOWN"].loadFromFile("Resources/Tiny_Adventure_Pack_Plus/Character/Char_one/Walk/Char_walk_down.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
-	if (!this->textures["PLAYER_ATTACK_DOWN"].loadFromFile("Resources/Tiny Adventure Pack Plus/Character/Char_one/Attack/Sword/Char_atk_down.png"))
+	if (!this->textures["PLAYER_ATTACK_DOWN"].loadFromFile("Resources/Tiny_Adventure_Pack_Plus/Character/Char_one/Attack/Sword/Char_atk_down.png"))
 	{
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
@@ -83,7 +83,7 @@ void GameState::initPlayers()
 
 void GameState::initTileMap()
 {
-	this->tileMap = new TileMap(this->stateData->gridSize, 10, 10, "Resources/Tiny Adventure Pack Plus/Tilesets/TS_Dirt.png");
+	this->tileMap = new TileMap(this->stateData->gridSize, this->stateData->textureScale, 10, 10, "Resources/Tiny_Adventure_Pack_Plus/Tilesets/TS_Dirt.png");
 }
 
 //Constructors / Destructors

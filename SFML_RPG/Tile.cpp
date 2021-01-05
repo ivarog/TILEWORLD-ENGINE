@@ -7,13 +7,13 @@ Tile::Tile()
 	this->type = 0;
 }
 
-Tile::Tile(float x, float y, float gridSizeF, const sf::Texture& texture, const sf::IntRect& texrect, bool collision, short type)
+Tile::Tile(unsigned gridX, unsigned gridY, float gridSizeF, const sf::Texture& texture, const sf::IntRect& texrect, bool collision, short type)
 {
 	this->shape.setSize(sf::Vector2f(gridSizeF, gridSizeF));
 	this->shape.setFillColor(sf::Color::White);
 	//this->shape.setOutlineThickness(1.f);
 	//this->shape.setOutlineColor(sf::Color::Black);
-	this->shape.setPosition(x, y);
+	this->shape.setPosition(static_cast<float>(gridX) * gridSizeF,static_cast<float>(gridY) * gridSizeF);
 	this->shape.setTexture(&texture);
 	this->shape.setTextureRect(texrect);
 

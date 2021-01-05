@@ -13,6 +13,7 @@ State::State(StateData* stateData)
 	this->keyTime = 0.f;
 	this->keyTimeMax = 10.f;
 	this->gridSize = stateData->gridSize;
+	this->textureScale = stateData->textureScale;
 }
 
 

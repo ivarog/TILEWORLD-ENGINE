@@ -18,6 +18,7 @@ private:
 	std::map<std::string, int> supportedKeys;
 
 	float gridSize;
+	float textureScale;
 
 	//Initialization
 	void initVariables();

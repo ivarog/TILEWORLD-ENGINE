@@ -34,6 +34,7 @@ void Game::initVariables()
 
 	// Original size tile = 16
 	this->gridSize = 80.f;
+	this->textureScale = 5.f;
 }
 
 void Game::initGraphicsSettings()
@@ -48,6 +49,7 @@ void Game::initSateData()
 	this->stateData.supportedKeys = &this->supportedKeys;
 	this->stateData.states = &this->states;
 	this->stateData.gridSize = this->gridSize;
+	this->stateData.textureScale = this->textureScale;
 }
 
 void Game::initStates()

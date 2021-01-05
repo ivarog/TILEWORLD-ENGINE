@@ -226,7 +226,7 @@ void GUI::TextureSelector::updateKeytime(const float& dt)
 	}
 }
 
-GUI::TextureSelector::TextureSelector(float x, float y, float width, float height, float gridSize, const sf::Texture* textureSheet, const float textureScale, sf::Font& font, std::string text) : keytimeMax(2.f)
+GUI::TextureSelector::TextureSelector(float x, float y, float width, float height, float gridSize, const float textureScale, const sf::Texture* textureSheet, sf::Font& font, std::string text) : keytimeMax(2.f)
 {
 	this->gridSize = gridSize;
 	this->textureScale = textureScale;

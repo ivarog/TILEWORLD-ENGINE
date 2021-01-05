@@ -95,7 +95,7 @@ namespace GUI
 
 
 	public:
-		TextureSelector(float x, float y, float width, float height, float gridSize, const sf::Texture* textureSheet, const float textureScale, sf::Font& font, std::string text);
+		TextureSelector(float x, float y, float width, float height, float gridSize, const float textureScale, const sf::Texture* textureSheet, sf::Font& font, std::string text);
 		~TextureSelector();
 
 		//Accesors

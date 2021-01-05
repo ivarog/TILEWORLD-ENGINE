@@ -15,6 +15,7 @@ public:
 
 	//Variables
 	float gridSize;
+	float textureScale;
 	sf::RenderWindow* window; 
 	GraphicsSettings* gfxSettings;
 	std::map<std::string, int>* supportedKeys; 
@@ -37,6 +38,7 @@ protected:
 	float keyTime;
 	float keyTimeMax;
 	float gridSize;
+	float textureScale;
 
 	sf::Vector2i mousePosScreen;
 	sf::Vector2i mousePosWindow;

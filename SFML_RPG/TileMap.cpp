@@ -12,15 +12,19 @@ void TileMap::clear()
 				delete this->map[x][y][z];
 				this->map[x][y][z] = NULL;
 			}
-
+			this->map[x][y].clear();
 		}
+		this->map[x].clear();
 	}
+
+	this->map.clear();
 }
 
-TileMap::TileMap(float gridSize, unsigned width, unsigned height, std::string textureFile)
+TileMap::TileMap(float gridSize, float textureScale, unsigned width, unsigned height, std::string textureFile)
 {
 	this->gridSizeF = gridSize;
 	this->gridSizeU = static_cast<unsigned>(this->gridSizeF);
+	this->textureScale = textureScale;
 	this->maxSize.x = width;
 	this->maxSize.y = height;
 	this->layers = 1;
@@ -58,13 +62,13 @@ const sf::Texture* TileMap::getTileSheet() const
 	return &this->tileSheet;
 }
 
-void TileMap::addTile(const unsigned x, const unsigned y, const unsigned z, const sf::IntRect& textureRect)
+void TileMap::addTile(const unsigned x, const unsigned y, const unsigned z, const sf::IntRect& textureRect, const bool& collision, const short& type)
 {
 	if (x < this->maxSize.x && x >= 0 && y < this->maxSize.y && y >= 0 && z < this->layers && z >= 0)
 	{
 		if (this->map[x][y][z] == NULL)
 		{
-			this->map[x][y][z] = new Tile(x * this->gridSizeF, y * this->gridSizeF, this->gridSizeF, this->tileSheet, textureRect);
+			this->map[x][y][z] = new Tile(x, y, this->gridSizeF, this->tileSheet, textureRect, collision, type);
 		}
 	}
 }
@@ -117,7 +121,7 @@ void TileMap::saveToFile(const std::string fileName)
 		}
 		else
 		{
-			std::cout << "ERROR::TILEMAP CPULD NOT SEVE TO FILE::FILENAME: " << fileName << "\n";
+			std::cout << "ERROR::TILEMAP COULD NOT SEVE TO FILE::FILENAME: " << fileName << "\n";
 		}
 
 		outFile.close();
@@ -142,7 +146,7 @@ void TileMap::loadFromFile(const std::string fileName)
 		bool collision = false;
 		short type = 0;
 
-		inFile >> size.x >> size.y >> gridSizeU >> layers >> textureFile;
+		inFile >> size.x >> size.y >> gridSize >> layers >> textureFile;
 
 		this->gridSizeF = static_cast<float>(gridSize);
 		this->gridSizeU = gridSize;
@@ -175,7 +179,7 @@ void TileMap::loadFromFile(const std::string fileName)
 		//Load all tiles
 		while (inFile >> x >> y >> z >> trX >> trY >> collision >> type)
 		{
-			//this->map[x][y][z] = new Tile
+			this->map[x][y][z] = new Tile(x, y, this->gridSizeF, this->tileSheet, sf::IntRect(trX, trY, this->gridSizeU / this->textureScale, this->gridSizeU / this->textureScale), collision, type);
 		}
 	}
 	else

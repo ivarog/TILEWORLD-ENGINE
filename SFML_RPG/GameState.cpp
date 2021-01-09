@@ -12,6 +12,26 @@ void GameState::initFonts()
 	}
 }
 
+void GameState::initDeferredRender()
+{
+	this->renderTexture.create(
+		this->stateData->gfxSettings->resolution.width,
+		this->stateData->gfxSettings->resolution.height
+	);
+
+	this->renderSprite.setTexture(this->renderTexture.getTexture());
+	this->renderSprite.setTextureRect(sf::IntRect(0, 0,
+		this->stateData->gfxSettings->resolution.width,
+		this->stateData->gfxSettings->resolution.height
+	));
+}
+
+void GameState::initView()
+{
+	this->view.setSize(sf::Vector2f(370.f, 220.f));
+	this->view.setCenter(player->getPosition());
+}
+
 void GameState::initKeybinds()
 {
 	std::ifstream ifs("Config/gamestate_keybinds.ini");
@@ -84,16 +104,19 @@ void GameState::initPlayers()
 void GameState::initTileMap()
 {
 	this->tileMap = new TileMap(this->stateData->gridSize, this->stateData->textureScale, 10, 10, "Resources/Tiny_Adventure_Pack_Plus/Tilesets/TS_Dirt.png");
+	this->tileMap->loadFromFile("text.mp");
 }
 
 //Constructors / Destructors
 GameState::GameState(StateData* stateData) : State(stateData)
 {
+	this->initDeferredRender();
 	this->initKeybinds();
 	this->initFonts();
 	this->initTextures();
 	this->initPauseMenu();
 	this->initPlayers();
+	this->initView();
 	this->initTileMap();
 
 	//sf::View view(sf::Vector2f(0.f, 0.f), sf::Vector2f(300.f, 200.f));
@@ -106,6 +129,12 @@ GameState::~GameState()
 	delete this->pmenu;
 	delete this->player;
 	delete this->tileMap;
+}
+
+void GameState::updateView(const float& dt)
+{
+	this->view.setCenter(std::floor(this->player->getPosition().x), std::floor(this->player->getPosition().y));
+	//this->view.setCenter(this->player->getPosition().x, this->player->getPosition().y);
 }
 
 void GameState::updateInput(const float& dt)
@@ -138,21 +167,29 @@ void GameState::updatePauseMenuButtons()
 		this->endState();
 }
 
+void GameState::updateTileMap(const float& dt)
+{
+	this->tileMap->update();
+	this->tileMap->updateCollision(this->player);
+}
+
 void GameState::update(const float& dt)
 {
-	this->updateMousePositions();
+	this->updateMousePositions(&this->view);
 	this->updateKeytime(dt);
 	this->updateInput(dt);
 
 	if (!this->paused) //Unpaused update
 	{
+		this->updateView(dt);
 		this->updatePlayerInput(dt);
 
 		this->player->update(dt);
+		this->updateTileMap(dt);
 	}
 	else //Paused update
 	{
-		this->pmenu->update(this->mousePosView);
+		this->pmenu->update(this->mousePosWindow);
 		this->updatePauseMenuButtons();
 	}
 }
@@ -161,13 +198,32 @@ void GameState::render(sf::RenderTarget* target)
 {
 	if (!target)
 		target = this->window;
-	
+
+	target->setView(this->view);
 	this->tileMap->render(*target);
 
 	this->player->render(*target);
 
 	if (this->paused)
 	{
+		target->setView(this->window->getDefaultView());
 		this->pmenu->render(*target);
 	}
+
+	//this->renderTexture.clear();
+	//this->renderTexture.setView(this->view);
+	//this->tileMap->render(this->renderTexture);
+
+	//this->player->render(this->renderTexture);
+
+	//if (this->paused)
+	//{
+	//	this->renderTexture.setView(this->renderTexture.getDefaultView());
+	//	this->pmenu->render(this->renderTexture);
+	//}
+
+	////FINAL RENDER
+	//this->renderTexture.display();
+	//this->renderSprite.setTexture(this->renderTexture.getTexture());
+	//target->draw(this->renderSprite);
 }

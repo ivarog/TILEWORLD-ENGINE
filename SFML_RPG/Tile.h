@@ -20,6 +20,8 @@ public:
 	Tile(unsigned gridX, unsigned gridY, float gridSizeF, const sf::Texture& texture, const sf::IntRect& texrect, bool collision = false, short type = TileTypes::DEFAULT);
 	virtual ~Tile();
 
+	const bool& getCollision() const;
+	const sf::Vector2f& getPosition() const;
 	const std::string getAsString() const;
 
 	void update();

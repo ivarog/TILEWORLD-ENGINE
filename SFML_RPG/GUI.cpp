@@ -71,11 +71,11 @@ void GUI::Button::setId(const short unsigned id)
 }
 
 
-void GUI::Button::update(const sf::Vector2f& mousePos)
+void GUI::Button::update(const sf::Vector2i& mousePosWindow)
 {
 	this->buttonState = BTN_IDLE;
 	//Hover
-	if (this->shape.getGlobalBounds().contains(mousePos))
+	if (this->shape.getGlobalBounds().contains(static_cast<sf::Vector2f> (mousePosWindow)))
 	{
 		this->buttonState = BTN_HOVER;
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -164,11 +164,11 @@ void GUI::DropdownList::updateKeytime(const float &dt)
 	}
 }
 
-void GUI::DropdownList::update(const sf::Vector2f& mousePos, const float& dt)
+void GUI::DropdownList::update(const sf::Vector2i& mousePosWindow, const float& dt)
 {
 	this->updateKeytime(dt);
 
-	this->activeElement->update(mousePos);
+	this->activeElement->update(mousePosWindow);
 
 	//Show and hide the list
 	if (this->activeElement->isPressed() && this->getKeytime())
@@ -180,7 +180,7 @@ void GUI::DropdownList::update(const sf::Vector2f& mousePos, const float& dt)
 	{
 		for (auto& i : this->list) 
 		{
-			i->update(mousePos);
+			i->update(mousePosWindow);
 
 			if (i->isPressed() && this->getKeytime())
 			{
@@ -287,7 +287,7 @@ const sf::IntRect& GUI::TextureSelector::getTextureRect() const
 void GUI::TextureSelector::update(const sf::Vector2i& mousePosWindow, const float& dt)
 {
 	this->updateKeytime(dt);
-	this->hideBtn->update(static_cast<sf::Vector2f>(mousePosWindow));
+	this->hideBtn->update(mousePosWindow);
 
 	if (this->hideBtn->isPressed() && this->getKeytime())
 	{

@@ -23,10 +23,13 @@ public:
 	//Accesors
 	const float& getMaxVelocity();
 	const sf::Vector2f& getVelocity() const;
-	MovementState playerState = IdleDown;
+	MovementState playerState = MovementState::IdleDown;
 
 	//Functions
 	const bool getState(const short unsigned state) const;
+	void stopVelocity();
+	void stopVelocityX();
+	void stopVelocityY();
 
 	void update(const float& dt);
 	void move(const float dir_x, const float dir_y, const float& dt);

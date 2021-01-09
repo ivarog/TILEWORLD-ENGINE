@@ -106,7 +106,7 @@ void SettingsState::updateGUI(const float& dt)
 {
 	for (auto& it : this->buttons)
 	{
-		it.second->update(this->mousePosView);
+		it.second->update(this->mousePosWindow);
 	}
 
 	if (this->buttons["BACK"]->isPressed())
@@ -122,7 +122,7 @@ void SettingsState::updateGUI(const float& dt)
 
 	for (auto& it : this->dropDownsList)
 	{
-		it.second->update(this->mousePosView, dt);
+		it.second->update(this->mousePosWindow, dt);
 	} 
 }
 

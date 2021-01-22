@@ -1,50 +1,13 @@
-﻿  EditorState.cpp
-C:\Users\Ivan\Documents\C++\SFML_RPG\SFML_RPG\EditorState.cpp(7,126): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-C:\Users\Ivan\Documents\C++\SFML_RPG\SFML_RPG\EditorState.cpp(7,67): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-C:\Users\Ivan\Documents\C++\SFML_RPG\SFML_RPG\EditorState.cpp(15,122): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\Ivan\Documents\C++\SFML_RPG\SFML_RPG\EditorState.cpp(15,74): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\Ivan\Documents\C++\SFML_RPG\SFML_RPG\EditorState.cpp(51,83): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-  Entity.cpp
-  Game.cpp
-  GameState.cpp
-  HitboxComponent.cpp
-  main.cpp
-  MainMenuState.cpp
-  Player.cpp
-  SettingsState.cpp
-  State.cpp
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SFML_RPG.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   TileMap.cpp
-C:\Users\Ivan\Documents\C++\SFML_RPG\SFML_RPG\TileMap.cpp(189,150): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+C:\Users\Ivan\Documents\C++\SFML_RPG\SFML_RPG\TileMap.cpp(195,150): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
           with
           [
               T=int
           ]
-C:\Users\Ivan\Documents\C++\SFML_RPG\SFML_RPG\TileMap.cpp(189,112): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+C:\Users\Ivan\Documents\C++\SFML_RPG\SFML_RPG\TileMap.cpp(195,112): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
           with
           [
               T=int
           ]
-  Generating Code...
-C:\Users\Ivan\Documents\C++\SFML_RPG\SFML_RPG\Entity.cpp(66): warning C4172: returning address of local variable or temporary
-C:\Users\Ivan\Documents\C++\SFML_RPG\SFML_RPG\Entity.cpp(68): warning C4172: returning address of local variable or temporary
-  SFML_RPG.vcxproj -> C:\Users\Ivan\Documents\C++\SFML_RPG\Debug\SFML_RPG.exe
+  SFML_RPG.vcxproj -> C:\Users\Ivan\Documents\C++\SFML_RPG\Debug\TILE_WORLD_ENGINE.exe

@@ -256,14 +256,14 @@ void TileMap::updateCollision(Entity* entity)
 	else if (this->toY >= this->maxSizeGrid.y)
 		this->toY = this->maxSizeGrid.y - 1;
 
-	if(this->)
+	/*if(this->)
 	for (size_t x = fromX; x < this->toX; x++)
 	{
 		for (size_t y = fromY; y < this->toY; y++)
 		{
 			
 		}
-	}
+	}*/
 }
 
 void TileMap::update()
